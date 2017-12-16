@@ -1,0 +1,56 @@
+{
+  "name": "buefy",
+  "version": "0.6.2",
+  "homepage": "https://buefy.github.io",
+  "description": "Nuxt Module of Buefy - Lightweight UI components for Vue.js based on Bulma",
+  "author": "Alex Montgomery <alex@mon.tg> Buefy by Rafael Beraldo <rafael.pimpa@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apmontgomery/nuxt-buefy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/apmontgomery/nuxt-buefy/issues"
+  },
+  "scripts": {
+    "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "build:lib:clean": "rimraf lib",
+    "build:lib:js": "vue build src/index.js --prod --lib Buefy --dist lib",
+    "build:lib:sass": "node-sass --output-style expanded --source-map true --include-path node_modules src/scss/buefy-build.scss lib/buefy.css",
+    "build:lib:autoprefix": "postcss --use autoprefixer --output lib/buefy.css lib/buefy.css",
+    "build:lib:cssnano": "postcss --use cssnano --no-map --output lib/buefy.min.css lib/buefy.css",
+    "build:lib": "npm run build:lib:clean && npm run build:lib:js && npm run build:lib:sass && npm run build:lib:autoprefix && npm run build:lib:cssnano",
+    "build:docs": "node build/build.js",
+    "build": "npm run build:lib && npm run build:docs"
+  },
+  "keywords": [
+    "bulma",
+    "vue",
+    "vuejs",
+    "vue-bulma",
+    "components"
+  ],
+  "dependencies": {
+    "bulma": "^0.6.1",
+    "vue": "~2.4.2"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
